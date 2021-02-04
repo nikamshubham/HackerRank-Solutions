@@ -11,7 +11,7 @@
 --         Solution
 -- ========================
 
-SELECT CEILING((SUM(Salary) - SUM(REPLACE(Salary, '0', ""))) / COUNT(*))
+SELECT CEILING((SUM(Salary) - SUM(REPLACE(Salary, '0', ''))) / COUNT(*))
 FROM EMPLOYEES;
 
 -- ========================
