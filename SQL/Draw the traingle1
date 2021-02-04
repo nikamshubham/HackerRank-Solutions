@@ -1,0 +1,39 @@
+/*
+* * * * * * * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * 
+* * * * * * * * * * * * * 
+* * * * * * * * * * * * 
+* * * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * 
+* * * * * * * * 
+* * * * * * * 
+* * * * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+*/
+
+
+First, we declare a variable called number and set it to 21:
+SET @number = 21;
+
+Then, we choose a table with at least 20 rows and we apply REPEAT function for each row. Also, we use the variable number
+to record the length of each line. As a result, we need to decrease the number by 1 every time before we apply the REPEAT function:
+SET @number = 21;
+SELECT REPEAT('* ', @number := @number - 1) FROM information_schema.tables;
+
+We initialize the variable with 21 and decrease it by 1 for each row. But what if the variable becomes less than 0? The REPEAT function will return null.
+So, for example, we choose a table with 30 rows, the query will output 30 lines, 20 lines as we expect and 10 lines of null. It is better to exclude null lines.
+By limiting the number of lines to output:
+
+
+SET @number = 21;
+SELECT REPEAT('* ', @number := @number - 1) FROM information_schema.tables LIMIT 20;
